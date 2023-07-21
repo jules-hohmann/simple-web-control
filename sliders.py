@@ -4,12 +4,13 @@ from threading import Thread, Event
 import queue
 import time
 from pymavlink import mavutil
-
+import dance_template
 
 global motor_values
 motor_values = [0, 0, 0, 0, 0, 0]
 run_thread = Event()
 run_thread.set()
+
 
 
 def arm_rov(mav_connection):
@@ -118,6 +119,9 @@ with gr.Blocks() as demo:
     with gr.Row():
         button = gr.Button(value="STOP ALL", label="Stop all")
     button.click(stop_all, inputs=[], outputs=[], api_name="stop_all")
+    with gr.Row():
+        button2 = gr.Button(value="MIT", label="MIT")
+        button2.click(dance_template.draw_Mit(),inputs=[], outputs=[], api_name="draw_Mit")
 
 
 if __name__ == "__main__":
